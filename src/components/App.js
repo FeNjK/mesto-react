@@ -1,72 +1,16 @@
-//import logo from './../logo.svg';
-
-//import Api from "../utils/Api";
-//import Header from './Header';
-//import Main from './Main';
-//import Footer from './Footer';
+import Header from './Header.js';
+import Main from './Main';
+import Footer from './Footer';
 //import PopupWithForm from './PopupWithForm';
-//import ImagePopup from "./ImagePopup";
+//import ImagePopup from './ImagePopup';
+//import Api from '../utils/Api.js';
 
 function App() {
   return (
     <>
-    <header className="header">
-      <img className="header__logo" 
-           src="<%=require('./images/logo.svg')%>" 
-           alt="Логотип"/>
-    </header>
-    
-    <main className="content">
-
-      <section className="profile">
-        <article className="profile-info">
-          <img className="profile-info__avatar" 
-               src="#"
-               alt="Аватар пользователя"/>
-          <button className="profile-info__avatar-button"
-                  title="Редактирование аватара"
-                  aria-label="Кнопка редактирование аватара">
-            <img className="profile-info__avatar-pen"
-                 src="<%=require('./images/editing-pen.svg')%>" 
-                 alt="Перо редактирования аватара пользователя"/>
-          </button>
-          
-          
-               <div className="profile-info__data">
-            <div className="profile-info__single-level">
-              <h1 className="profile-info__name">Жак-Ив Кусто</h1>
-              <button className="profile-info__editing-button" 
-                   title="Редактирование профиля" 
-                   type="button"
-                   aria-label="Кнопка редактирование профиля">
-                <img className="profile-info__editing-pen"
-                     src="<%=require('./images/editing-pen.svg')%>" 
-                     alt="Перо редактирования имени и рода деятельности"/>
-              </button>
-            </div>
-            <p className="profile-info__activity-type">Исследователь океана</p>
-          </div>
-        </article>
-        <button className="profile__add-button" 
-                type="button" 
-                title="Добавить фотографии">
-          <img className="profile__button-vector" 
-               src="<%=require('./images/button-vector.svg')%>" 
-               alt="Добавить фотографии"/>
-        </button>
-      </section>
-
-      <section className="photo-library">
-        <ul className="elements">
-          
-        </ul>
-      </section>
-
-    </main>
-
-    <footer className="footer">
-      <p className="footer__author">&copy; 2022 Андрей Коростелев</p>
-    </footer>
+    <Header />
+    <Main />
+    <Footer />
     
     <div className="popup popup_task_edit popup_animation">
       <div className="popup__content">
