@@ -4,10 +4,9 @@ import Main from './Main';
 import Footer from './Footer';
 import ImagePopup from './ImagePopup';
 import PopupWithForm from './PopupWithForm';
-//import Api from '../utils/api.js';
 
 function App() {
-  
+
   const [isEditProfilePopupOpen, setIsEditProfilePopupOpen] = React.useState(false);
   const [isAddPlacePopupOpen, setIsAddPlacePopupOpen] = React.useState(false);
   const [isEditAvatarPopupOpen, setIsEditAvatarPopupOpen] = React.useState(false);
@@ -20,7 +19,7 @@ function App() {
   function handleEditProfileClick() {
     setIsEditProfilePopupOpen(true);
   }
-  
+
   function handleAddPlaceClick() {
     setIsAddPlacePopupOpen(true);
   }
@@ -60,13 +59,13 @@ function App() {
       <fieldset className="popup__input-place"
                 name="popup__input-place">
         <input type="text"
-              name="profile_name"
-              placeholder="Введите ваше имя"
-              className="popup__input popup__input_content_name"
-              id="profile_name"
-              minLength="2"
-              maxLength="40"
-              required/>
+               name="profile_name"
+               placeholder="Введите ваше имя"
+               className="popup__input popup__input_content_name"
+               id="profile_name"
+               minLength="2"
+               maxLength="40"
+               required/>
         <span className="popup__validation-message popup__validation-message_position_first"
               id="profile_name-error">
         </span>
@@ -137,12 +136,13 @@ function App() {
       </fieldset>
     </PopupWithForm>
 
-    {/* Реализация функций удаления карточек и лайка будет осуществлена в следующем спринте */}
-    <PopupWithForm title='Вы уверены?'
+    {/* Реализация функций удаления карточек и лайка будет осуществлена в 11 спринте */}
+    {/* <PopupWithForm title='Вы уверены?'
                    name='confirmation'
                    buttonText='Да'
+                   ...
     >
-    </PopupWithForm>
+    </PopupWithForm> */}
   </>
   );
 }

@@ -1,6 +1,5 @@
 class Api {
   constructor(options) {
-    // Делал как в ТЗ по пункту "Требования к коду"!
     this._url = options.url;
     this._headers = options.headers;
   }

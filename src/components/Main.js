@@ -2,7 +2,7 @@ import React from 'react';
 import editingPen from '../images/editing-pen.svg';
 import buttonVector from '../images/button-vector.svg';
 import Card from './Card.js';
-import api from '../utils/api.js';
+import Api from '../utils/api.js';
 
 function Main({ onEditAvatar, onEditProfile, onAddPlace, onCardClick }) {
   
@@ -11,30 +11,29 @@ function Main({ onEditAvatar, onEditProfile, onAddPlace, onCardClick }) {
   const[userDescription, setUserDescription] = React.useState('');
   const[cards, setCards] = React.useState([]);
 
-  
   // Используем стейт для данных из API
   // (Хотя можно было все это перенести и в App.js...)
   React.useEffect(() => {
     // Запрос к Api за информацией о пользователе 
     // и массиве карточек выполняется единожды, при монторивании
-    api.getUserInfo()
-    .then((userData) => {
-      setUserName(userData.name);
-      setUserDescription(userData.about);
-      setUserAvatar(userData.avatar);
-    })
-    .catch((err) => {
-      console.log(`Тут какая-то ошибка с получением пользовательских данных ${err}`)
-    })
+    Api.getUserInfo()
+      .then((userData) => {
+        setUserName(userData.name);
+        setUserDescription(userData.about);
+        setUserAvatar(userData.avatar);
+      })
+      .catch((err) => {
+        console.log(`Тут какая-то ошибка с получением пользовательских данных ${err}`)
+      })
 
-    api.getInitialCards()
-    .then((card) => {
-      setCards(card);
-    })
-    .catch((err) => {
-      console.log(`Тут какая-то ошибка с получением массива карточек ${err}`)
-    })
-  }, [])
+    Api.getInitialCards()
+      .then((card) => {
+        setCards(card);
+      })
+      .catch((err) => {
+        console.log(`Тут какая-то ошибка с получением массива карточек ${err}`)
+      })
+    }, [])
   // а вот если бы мы не поставили пустой массив последним
   // то вызоб совершался далеко не единожды
 
@@ -74,8 +73,8 @@ function Main({ onEditAvatar, onEditProfile, onAddPlace, onCardClick }) {
         </article>
         <button className="profile__add-button"
                 type="button"
-                title="Добавить фотографии">
-                onClick={onAddPlace}
+                title="Добавить фотографии"
+                onClick={onAddPlace}>
           <img className="profile__button-vector"
                src={buttonVector}
                alt="Добавить фотографии"/>
@@ -91,11 +90,12 @@ function Main({ onEditAvatar, onEditProfile, onAddPlace, onCardClick }) {
           { cards.map((card) => {
             return (
               <Card
+                card={card}
                 name={card.name}
                 link={card.link}
                 likes={card.likes}
-                onCardClick={onCardClick} 
                 key={card._id} // очень важное свойство!!!
+                onCardClick={onCardClick}
               /> 
             )}
           )}
