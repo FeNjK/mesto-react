@@ -12,4 +12,7 @@
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 900;
 }
