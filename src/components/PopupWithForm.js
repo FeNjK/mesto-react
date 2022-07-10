@@ -20,4 +20,4 @@ function PopupWithForm({ isOpen, onClose, name, title, children, buttonText }) {
   )
 }
 
- export default PopupWithForm;
+export default PopupWithForm;

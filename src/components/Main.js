@@ -19,8 +19,6 @@ function Main({ onEditAvatar, onEditProfile, onAddPlace, onCardClick }) {
     // и массиве карточек выполняется единожды, при монторивании
     api.getUserInfo()
     .then((userData) => {
-      
-
       setUserName(userData.name);
       setUserDescription(userData.about);
       setUserAvatar(userData.avatar);
@@ -91,16 +89,11 @@ function Main({ onEditAvatar, onEditProfile, onAddPlace, onCardClick }) {
       <section className="photo-library">
         <ul className="elements">
           { cards.map((card) => {
-            
-            /* console.log(card); */
-            
             return (
               <Card
-                /* card={card} */
                 name={card.name}
                 link={card.link}
                 likes={card.likes}
-                
                 onCardClick={onCardClick} 
                 key={card._id} // очень важное свойство!!!
               /> 
