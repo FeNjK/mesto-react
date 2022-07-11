@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import editingPen from "../images/editing-pen.svg";
 import buttonVector from "../images/button-vector.svg";
 import Card from "./Card.js";
-import api from "../utils/api.js";
+import api from "../utils/Api.js";
 
 function Main({ onEditAvatar, onEditProfile, onAddPlace, onCardClick }) {
   const [userAvatar, setUserAvatar] = useState("");
