@@ -4,15 +4,46 @@ import Main from "./Main";
 import Footer from "./Footer";
 import ImagePopup from "./ImagePopup";
 import PopupWithForm from "./PopupWithForm";
+import CurrentUserContext from "../contexts/CurrentUserContext.js";
+import EditProfilePopup from "./EditProfilePopup.js";
+import EditAvatarPopup from "./EditAvatarPopup.js";
+//import { useEffect, useState } from "react";
+import api from "../utils/Api.js";
 
 function App() {
-  const [isEditProfilePopupOpen, setIsEditProfilePopupOpen] =
-    React.useState(false);
+  const [isEditProfilePopupOpen, setIsEditProfilePopupOpen] = React.useState(false);
   const [isAddPlacePopupOpen, setIsAddPlacePopupOpen] = React.useState(false);
-  const [isEditAvatarPopupOpen, setIsEditAvatarPopupOpen] =
-    React.useState(false);
+  const [isEditAvatarPopupOpen, setIsEditAvatarPopupOpen] = React.useState(false);
   const [selectedCard, setSelectedCard] = React.useState(null);
+  const [cards, setCards] = React.useState([]);
 
+  // Создали переменную состояния и эффект при монтировании,
+  // который будет вызывать api.getUserInfo 
+  // и обновлять стейт переменную из полученного значения
+  /**
+   * currentUser - переменная состояния
+   * setCurrentUser - эфффект при монтировании
+   */
+  const [currentUser, setCurrentUser] = React.useState({});
+
+  // Функции взаимодействия с карточками
+  
+  function handleCardLike(card) {
+    // Проверяем, есть ли уже лайк на этой карточке
+    const isLiked = card.likes.some((i) => i._id === currentUser._id);
+
+    // Отправляем запрос в API и получаем обновлённые данные карточки
+    api.changeLikeCardStatus(card._id, !isLiked).then((newCard) => {
+      setCards((state) => state.map((c) => (c._id === card._id ? newCard : c)));
+    });
+  }
+
+  function handleCardDelete(card) {
+    
+  }
+
+
+  // Функции взаимодействия с попапами
   function handleEditAvatarClick() {
     setIsEditAvatarPopupOpen(true);
   }
@@ -43,7 +74,10 @@ function App() {
         onEditProfile={handleEditProfileClick}
         onAddPlace={handleAddPlaceClick}
         onEditAvatar={handleEditAvatarClick}
+        cards={cards}
         onCardClick={handleCardClick}
+        onCardLike={handleCardLike}
+        onCardDelete={handleCardDelete}
       />
       <Footer />
       <ImagePopup card={selectedCard} onClose={closeAllPopups} />

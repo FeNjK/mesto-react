@@ -1,11 +1,27 @@
-import { useEffect, useState } from "react";
 import editingPen from "../images/editing-pen.svg";
 import buttonVector from "../images/button-vector.svg";
 import Card from "./Card.js";
-import api from "../utils/Api.js";
+import React from "react";
+import CurrentUserContext from "../contexts/CurrentUserContext.js";
+//import { useEffect, useState } from "react";
+//import api from "../utils/Api.js";
 
-function Main({ onEditAvatar, onEditProfile, onAddPlace, onCardClick }) {
-  const [userAvatar, setUserAvatar] = useState("");
+function Main({
+  onEditAvatar,
+  onEditProfile,
+  onAddPlace,
+  cards,
+  onCardClick,
+  onCardLike,
+  onCardDelete,
+}) {
+  /**
+   * Подписываемся на контекст CurrentUserContext
+   * currentUser - значения контекста
+   */
+  const currentUser = React.useContext(CurrentUserContext);
+
+  /* const [userAvatar, setUserAvatar] = useState("");
   const [userName, setUserName] = useState("");
   const [userDescription, setUserDescription] = useState("");
   const [cards, setCards] = useState([]);
@@ -36,7 +52,7 @@ function Main({ onEditAvatar, onEditProfile, onAddPlace, onCardClick }) {
       });
   }, []);
   // а вот если бы мы не поставили пустой массив последним
-  // то вызоб совершался далеко не единожды
+  // то вызоб совершался далеко не единожды */
 
   return (
     <main className="content">
@@ -44,7 +60,7 @@ function Main({ onEditAvatar, onEditProfile, onAddPlace, onCardClick }) {
         <article className="profile-info">
           <img
             className="profile-info__avatar"
-            src={userAvatar}
+            src={currentUser.avatar}
             alt="Аватар пользователя"
           />
           <button
@@ -62,7 +78,7 @@ function Main({ onEditAvatar, onEditProfile, onAddPlace, onCardClick }) {
 
           <div className="profile-info__data">
             <div className="profile-info__single-level">
-              <h1 className="profile-info__name">{userName}</h1>
+              <h1 className="profile-info__name">{currentUser.name}</h1>
               <button
                 className="profile-info__editing-button"
                 title="Редактирование профиля"
@@ -77,7 +93,7 @@ function Main({ onEditAvatar, onEditProfile, onAddPlace, onCardClick }) {
                 />
               </button>
             </div>
-            <p className="profile-info__activity-type">{userDescription}</p>
+            <p className="profile-info__activity-type">{currentUser.about}</p>
           </div>
         </article>
         <button
@@ -109,6 +125,8 @@ function Main({ onEditAvatar, onEditProfile, onAddPlace, onCardClick }) {
                 likes={card.likes}
                 key={card._id}
                 onCardClick={onCardClick}
+                onCardLike={onCardLike}
+                onCardDelete={onCardDelete}
               />
             );
           })}
