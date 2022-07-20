@@ -4,18 +4,18 @@ import Main from "./Main";
 import Footer from "./Footer";
 import ImagePopup from "./ImagePopup";
 import PopupWithForm from "./PopupWithForm";
+import { useEffect, useState } from "react";
+import api from "../utils/Api.js";
 import CurrentUserContext from "../contexts/CurrentUserContext.js";
 import EditProfilePopup from "./EditProfilePopup.js";
 import EditAvatarPopup from "./EditAvatarPopup.js";
-//import { useEffect, useState } from "react";
-import api from "../utils/Api.js";
 
 function App() {
-  const [isEditProfilePopupOpen, setIsEditProfilePopupOpen] = React.useState(false);
-  const [isAddPlacePopupOpen, setIsAddPlacePopupOpen] = React.useState(false);
-  const [isEditAvatarPopupOpen, setIsEditAvatarPopupOpen] = React.useState(false);
-  const [selectedCard, setSelectedCard] = React.useState(null);
-  const [cards, setCards] = React.useState([]);
+  const [isEditProfilePopupOpen, setIsEditProfilePopupOpen] = useState(false);
+  const [isAddPlacePopupOpen, setIsAddPlacePopupOpen] = useState(false);
+  const [isEditAvatarPopupOpen, setIsEditAvatarPopupOpen] = useState(false);
+  const [selectedCard, setSelectedCard] = useState(null);
+  const [cards, setCards] = useState([]);
 
   // Создали переменную состояния и эффект при монтировании,
   // который будет вызывать api.getUserInfo 
@@ -42,7 +42,6 @@ function App() {
     
   }
 
-
   // Функции взаимодействия с попапами
   function handleEditAvatarClick() {
     setIsEditAvatarPopupOpen(true);
@@ -68,7 +67,7 @@ function App() {
   }
 
   return (
-    <>
+    <CurrentUserContext.Provider value={currentUser}>
       <Header />
       <Main
         onEditProfile={handleEditProfileClick}
@@ -191,7 +190,7 @@ function App() {
       >
 
       </PopupWithForm> */}
-    </>
+    </CurrentUserContext.Provider>
   );
 }
 
