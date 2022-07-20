@@ -150,12 +150,13 @@ function App() {
       </PopupWithForm>
 
       {/* Реализация функций удаления карточек и лайка будет осуществлена в 11 спринте */}
-      {/* <PopupWithForm title='Вы уверены?'
-                   name='confirmation'
-                   buttonText='Да'
-                   ...
-    >
-    </PopupWithForm> */}
+      {/* <PopupWithForm
+        title="Вы уверены?"
+        name="confirmation"
+        buttonText="Да"
+      >
+
+      </PopupWithForm> */}
     </>
   );
 }

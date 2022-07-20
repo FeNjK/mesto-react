@@ -23,9 +23,7 @@ function Main({ onEditAvatar, onEditProfile, onAddPlace, onCardClick }) {
         setUserAvatar(userData.avatar);
       })
       .catch((err) => {
-        console.log(
-          `Тут какая-то ошибка с получением пользовательских данных ${err}`
-        );
+        console.log(`Тут какая-то ошибка с получением пользовательских данных ${err}`);
       });
 
     api
@@ -109,7 +107,7 @@ function Main({ onEditAvatar, onEditProfile, onAddPlace, onCardClick }) {
                 name={card.name}
                 link={card.link}
                 likes={card.likes}
-                key={card._id} // очень важное свойство!!!
+                key={card._id}
                 onCardClick={onCardClick}
               />
             );
