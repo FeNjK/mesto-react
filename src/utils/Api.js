@@ -111,6 +111,16 @@ class Api {
         return result;
       });
   }
+
+  // В прошлой работе Mesto было обисано
+  // иное решение (в index.js), но более объемное
+  toggleLikeCard(cardId, isLiked) {
+    if (!isLiked) {
+      return this.setLikeCard(cardId);
+    } else {
+      return this.deleteLikeCard(cardId);
+    }
+  }
 }
 
 const api = new Api({
