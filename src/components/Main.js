@@ -1,10 +1,8 @@
 import editingPen from "../images/editing-pen.svg";
 import buttonVector from "../images/button-vector.svg";
 import Card from "./Card.js";
-import React from "react";
+import { useContext } from "react";
 import CurrentUserContext from "../contexts/CurrentUserContext.js";
-//import { useEffect, useState } from "react";
-//import api from "../utils/Api.js";
 
 function Main({
   onEditAvatar,
@@ -19,41 +17,8 @@ function Main({
    * Подписываемся на контекст CurrentUserContext
    * currentUser - значения контекста
    */
-  const currentUser = React.useContext(CurrentUserContext);
-
-  /* const [userAvatar, setUserAvatar] = useState("");
-  const [userName, setUserName] = useState("");
-  const [userDescription, setUserDescription] = useState("");
-  const [cards, setCards] = useState([]);
-
-  // Используем стейт для данных из Api
-  // (Хотя можно было все это перенести и в App.js...)
-  useEffect(() => {
-    // Запрос к Api за информацией о пользователе
-    // и массиве карточек выполняется единожды, при монторивании
-    api
-      .getUserInfo()
-      .then((userData) => {
-        setUserName(userData.name);
-        setUserDescription(userData.about);
-        setUserAvatar(userData.avatar);
-      })
-      .catch((err) => {
-        console.log(`Тут какая-то ошибка с получением пользовательских данных ${err}`);
-      });
-
-    api
-      .getInitialCards()
-      .then((card) => {
-        setCards(card);
-      })
-      .catch((err) => {
-        console.log(`Тут какая-то ошибка с получением массива карточек ${err}`);
-      });
-  }, []);
-  // а вот если бы мы не поставили пустой массив последним
-  // то вызоб совершался далеко не единожды */
-
+  const currentUser = useContext(CurrentUserContext);
+  
   return (
     <main className="content">
       <section className="profile">
