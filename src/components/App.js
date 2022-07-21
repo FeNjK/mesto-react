@@ -9,6 +9,7 @@ import CurrentUserContext from "../contexts/CurrentUserContext.js";
 import EditProfilePopup from "./EditProfilePopup.js";
 import EditAvatarPopup from "./EditAvatarPopup.js";
 import AddPlacePopup from "./AddPlacePopup.js";
+import ConfirmPopup from "./ConfirmPopup.js";
 
 function App() {
   const [isEditProfilePopupOpen, setIsEditProfilePopupOpen] = useState(false);
@@ -16,6 +17,7 @@ function App() {
   const [isEditAvatarPopupOpen, setIsEditAvatarPopupOpen] = useState(false);
   const [selectedCard, setSelectedCard] = useState(null);
   const [cards, setCards] = useState([]);
+  const [isConfirmPopupOpen, setIsConfirmPopupOpen] = useState(null);
 
   // Создали переменную состояния и эффект при монтировании,
   // который будет вызывать api.getUserInfo
@@ -72,7 +74,7 @@ function App() {
   }
 
   // Сделано по аналогии с функцией лайка карточки
-  function handleCardDelete(card) {
+  function handleConfirmDelete(card) {
     api
       .removeCard(card._id)
       .then(() => {
@@ -142,11 +144,16 @@ function App() {
     setSelectedCard(card);
   }
 
+  function handleCardDelete(card) {
+    setIsConfirmPopupOpen(card);
+  }
+
   function closeAllPopups() {
     setIsEditAvatarPopupOpen(false);
     setIsEditProfilePopupOpen(false);
     setIsAddPlacePopupOpen(false);
     setSelectedCard(null);
+    setIsConfirmPopupOpen(null);
   }
 
   return (
@@ -178,12 +185,13 @@ function App() {
         onClose={closeAllPopups}
         onAddPlace={handleAddPlace}
       />
-      {/* Заготовка реализации функций удаления карточек и лайка будет осуществлена в 11 спринте */}
-      {/* <PopupWithForm
-        title="Вы уверены?"
-        name="confirmation"
-        buttonText="Да"
-      /> */}
+      {/* Заготовка реализации функций удаления карточек */}
+      {/*Что-то я тут наворотил (по аналогии...)*/}
+      <ConfirmPopup
+        isOpen={isConfirmPopupOpen}
+        onClose={closeAllPopups}
+        onConfirm={handleConfirmDelete}
+      />
     </CurrentUserContext.Provider>
   );
 }
