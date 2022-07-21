@@ -163,25 +163,21 @@ function App() {
       />
       <Footer />
       <ImagePopup card={selectedCard} onClose={closeAllPopups} />
-
       <EditAvatarPopup
         isOpen={isEditAvatarPopupOpen}
         onClose={closeAllPopups}
         onUpdateAvatar={handleUpdateAvatar}
       />
-      
       <EditProfilePopup
         isOpen={isEditProfilePopupOpen}
         onClose={closeAllPopups}
         onUpdateUser={handleUpdateUser}
       />
-
       <AddPlacePopup
         isOpen={isAddPlacePopupOpen}
         onClose={closeAllPopups}
         onAddPlace={handleAddPlace}
       />
-
       {/* Заготовка реализации функций удаления карточек и лайка будет осуществлена в 11 спринте */}
       {/* <PopupWithForm
         title="Вы уверены?"

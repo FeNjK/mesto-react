@@ -7,14 +7,13 @@ function EditAvatarPopup({ isOpen, onClose, onUpdateAvatar }) {
 
   // при открытии попапа сбрасываем поле ввода
   useEffect(() => {
-      avatarRef.current.value = '';
-  })
+    avatarRef.current.value = "";
+  });
 
   function handleSubmit(e) {
     e.preventDefault();
-    console.log(avatarRef.current.value);
     onUpdateAvatar({
-      avatar: avatarRef.current.value
+      avatar: avatarRef.current.value,
     });
   }
 

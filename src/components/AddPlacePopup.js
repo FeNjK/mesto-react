@@ -8,9 +8,10 @@ function AddPlacePopup({ isOpen, onClose, onAddPlace }) {
   // не понимаю почему так...
   // делал по анаалогии с редактированием форм.
   // думаю над очисткой полей ввода
-  /* useEffect(() => {
-    
-  }); */
+  useEffect(() => {
+    setName("");
+    setLink("");
+  }, [isOpen]);
 
   function handleSubmit(e) {
     e.preventDefault();

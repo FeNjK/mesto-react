@@ -24,7 +24,7 @@ class Api {
       });
   }
 
-  setUserInfo({name, about}) {
+  setUserInfo({ name, about }) {
     return fetch(`${this._url}/users/me`, {
       method: "PATCH",
       headers: this._headers,
@@ -44,7 +44,7 @@ class Api {
       method: "PATCH",
       headers: this._headers,
       body: JSON.stringify({
-        avatar: link,
+        avatar: link.avatar,
       }),
     })
       .then((res) => this._ringingServer(res))
