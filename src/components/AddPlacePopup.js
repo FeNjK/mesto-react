@@ -13,10 +13,10 @@ function AddPlacePopup({ isOpen, onClose, onAddPlace }) {
 
   function handleSubmit(e) {
     e.preventDefault();
-    
+
     onAddPlace({
       name,
-      link
+      link,
     });
   }
 
@@ -30,47 +30,47 @@ function AddPlacePopup({ isOpen, onClose, onAddPlace }) {
 
   return (
     <PopupWithForm
-        name="add-new-card"
-        title="Новое место"
-        buttonText="Сохранить"
-        isOpen={`${isOpen ? "popup_activ" : ""}`}
-        onClose={onClose}
-        onSubmit={handleSubmit}
-      >
-        <fieldset className="popup__input-place" name="popup__input-place">
-          <input
-            type="text"
-            name="card-title"
-            placeholder="Название"
-            className="popup__input popup__input_content_image-title"
-            id="card-title"
-            minLength="2"
-            maxLength="30"
-            required
-            value={name}
-            onChange={handleChangeName}
-          />
-          <span
-            className="popup__validation-message popup__validation-message_position_first"
-            id="card-title-error"
-          ></span>
-          <input
-            type="url"
-            name="picture-link"
-            placeholder="Ссылка на картинку"
-            className="popup__input popup__input_content_image-link"
-            id="picture-link"
-            required
-            value={link}
-            onChange={handleChangeLink}
-          />
-          <span
-            className="popup__validation-message popup__validation-message_position_second"
-            id="picture-link-error"
-          ></span>
-        </fieldset>
-      </PopupWithForm>
-  )
+      name="add-new-card"
+      title="Новое место"
+      buttonText="Сохранить"
+      isOpen={`${isOpen ? "popup_activ" : ""}`}
+      onClose={onClose}
+      onSubmit={handleSubmit}
+    >
+      <fieldset className="popup__input-place" name="popup__input-place">
+        <input
+          type="text"
+          name="card-title"
+          placeholder="Название"
+          className="popup__input popup__input_content_image-title"
+          id="card-title"
+          minLength="2"
+          maxLength="30"
+          required
+          value={name}
+          onChange={handleChangeName}
+        />
+        <span
+          className="popup__validation-message popup__validation-message_position_first"
+          id="card-title-error"
+        />
+        <input
+          type="url"
+          name="picture-link"
+          placeholder="Ссылка на картинку"
+          className="popup__input popup__input_content_image-link"
+          id="picture-link"
+          required
+          value={link}
+          onChange={handleChangeLink}
+        />
+        <span
+          className="popup__validation-message popup__validation-message_position_second"
+          id="picture-link-error"
+        />
+      </fieldset>
+    </PopupWithForm>
+  );
 }
 
 export default AddPlacePopup;
