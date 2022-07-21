@@ -1,9 +1,5 @@
-function PopupWithForm({ isOpen, onClose, name, title, children, buttonText }) {
-  // Создадим функцию для отмены перезагрузки страницы при сабмите
-  function onSubmitHandler(e) {
-    e.preventDefault();
-  }
-
+function PopupWithForm({ isOpen, onClose, name, title, children, buttonText, onSubmit }) {
+  
   return (
     <div
       className={`popup popup_animation popup_task_${name} ${
@@ -20,7 +16,7 @@ function PopupWithForm({ isOpen, onClose, name, title, children, buttonText }) {
         <form
           className={`popup__form popup__form_type_${name}`}
           name={name}
-          onSubmit={onSubmitHandler}
+          onSubmit={onSubmit}
           noValidate
           autoComplete="off"
         >

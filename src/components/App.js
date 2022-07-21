@@ -24,7 +24,7 @@ function App() {
    * currentUser - переменная состояния
    * setCurrentUser - эфффект при монтировании
    */
-  const [currentUser, setCurrentUser] = useState({});
+  const [currentUser, setCurrentUser] = useState({name: '', about: ''});
 
   // Используем стейт для данных из Api
   useEffect(() => {
