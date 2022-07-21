@@ -8,7 +8,7 @@ import { useEffect, useState } from "react";
 import api from "../utils/Api.js";
 import CurrentUserContext from "../contexts/CurrentUserContext.js";
 import EditProfilePopup from "./EditProfilePopup.js";
-import EditAvatarPopup from "./EditAvatarPopup.js";
+//import EditAvatarPopup from "./EditAvatarPopup.js";
 
 function App() {
   const [isEditProfilePopupOpen, setIsEditProfilePopupOpen] = useState(false);
@@ -18,7 +18,7 @@ function App() {
   const [cards, setCards] = useState([]);
 
   // Создали переменную состояния и эффект при монтировании,
-  // который будет вызывать api.getUserInfo 
+  // который будет вызывать api.getUserInfo
   // и обновлять стейт переменную из полученного значения
   /**
    * currentUser - переменная состояния
@@ -36,7 +36,9 @@ function App() {
         setCurrentUser(userData);
       })
       .catch((err) => {
-        console.log(`Тут какая-то ошибка с получением пользовательских данных ${err}`);
+        console.log(
+          `Тут какая-то ошибка с получением пользовательских данных ${err}`
+        );
       });
 
     api
@@ -60,7 +62,9 @@ function App() {
     api
       .toggleLikeCard(card._id, isLiked)
       .then((newCard) => {
-        setCards((state) => state.map((c) => (c._id === card._id ? newCard : c)));
+        setCards((state) =>
+          state.map((c) => (c._id === card._id ? newCard : c))
+        );
       })
       .catch((err) => {
         console.log(`Тут какая-то ошибка с лайком карточки ${err}`);
@@ -72,10 +76,24 @@ function App() {
     api
       .removeCard(card._id)
       .then(() => {
-         setCards((state) => state.filter((c) => (c._id !== card._id)));
+        setCards((state) => state.filter((c) => c._id !== card._id));
       })
       .catch((err) => {
         console.log(`Тут какая-то ошибка с удалением карточки ${err}`);
+      });
+  }
+
+  function handleUpdateUser(userData) {
+    api
+      .setUserInfo(userData)
+      .then((newUserData) => {
+        setCurrentUser(newUserData);
+        closeAllPopups();
+      })
+      .catch((err) => {
+        console.log(
+          `Тут какая-то ошибка с обновлением пользовательских данных ${err}`
+        );
       });
   }
 
@@ -117,45 +135,12 @@ function App() {
       />
       <Footer />
       <ImagePopup card={selectedCard} onClose={closeAllPopups} />
-      <PopupWithForm
+
+      <EditProfilePopup
+        isOpen={isEditProfilePopupOpen}
         onClose={closeAllPopups}
-        onEditProfile={handleEditProfileClick}
-        name="edit"
-        title="Редактировать профиль"
-        buttonText="Сохранить"
-        isOpen={`${isEditProfilePopupOpen ? "popup_activ" : ""}`}
-      >
-        <fieldset className="popup__input-place" name="popup__input-place">
-          <input
-            type="text"
-            name="profile_name"
-            placeholder="Введите ваше имя"
-            className="popup__input popup__input_content_name"
-            id="profile_name"
-            minLength="2"
-            maxLength="40"
-            required
-          />
-          <span
-            className="popup__validation-message popup__validation-message_position_first"
-            id="profile_name-error"
-          ></span>
-          <input
-            type="text"
-            name="type_of_activity"
-            placeholder="Укажите род ваших занятий"
-            className="popup__input popup__input_content_activity-type"
-            id="type_of_activity"
-            minLength="2"
-            maxLength="200"
-            required
-          />
-          <span
-            className="popup__validation-message popup__validation-message_position_second"
-            id="type_of_activity-error"
-          ></span>
-        </fieldset>
-      </PopupWithForm>
+        onUpdateUser={handleUpdateUser}
+      />
 
       <PopupWithForm
         onClose={closeAllPopups}
