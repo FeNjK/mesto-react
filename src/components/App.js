@@ -1,4 +1,3 @@
-import React from "react";
 import Header from "./Header.js";
 import Main from "./Main";
 import Footer from "./Footer";
@@ -9,24 +8,16 @@ import CurrentUserContext from "../contexts/CurrentUserContext.js";
 import EditProfilePopup from "./EditProfilePopup.js";
 import EditAvatarPopup from "./EditAvatarPopup.js";
 import AddPlacePopup from "./AddPlacePopup.js";
-import ConfirmPopup from "./ConfirmPopup.js";
+//import ConfirmPopup from "./ConfirmPopup.js";
 
 function App() {
+  const [currentUser, setCurrentUser] = useState({ name: "", about: "" });
   const [isEditProfilePopupOpen, setIsEditProfilePopupOpen] = useState(false);
   const [isAddPlacePopupOpen, setIsAddPlacePopupOpen] = useState(false);
   const [isEditAvatarPopupOpen, setIsEditAvatarPopupOpen] = useState(false);
+  //const [isConfirmPopupOpen, setIsConfirmPopupOpen] = useState(null);
   const [selectedCard, setSelectedCard] = useState(null);
   const [cards, setCards] = useState([]);
-  const [isConfirmPopupOpen, setIsConfirmPopupOpen] = useState(null);
-
-  // Создали переменную состояния и эффект при монтировании,
-  // который будет вызывать api.getUserInfo
-  // и обновлять стейт переменную из полученного значения
-  /**
-   * currentUser - переменная состояния
-   * setCurrentUser - эфффект при монтировании
-   */
-  const [currentUser, setCurrentUser] = useState({ name: "", about: "" });
 
   // Используем стейт для данных из Api
   useEffect(() => {
@@ -74,7 +65,8 @@ function App() {
   }
 
   // Сделано по аналогии с функцией лайка карточки
-  function handleConfirmDelete(card) {
+  function handleCardDelete(card) {
+    //console.log(card);
     api
       .removeCard(card._id)
       .then(() => {
@@ -144,16 +136,16 @@ function App() {
     setSelectedCard(card);
   }
 
-  function handleCardDelete(card) {
+  /* function handleCardDelete(card) {
     setIsConfirmPopupOpen(card);
-  }
+  } */
 
   function closeAllPopups() {
     setIsEditAvatarPopupOpen(false);
     setIsEditProfilePopupOpen(false);
     setIsAddPlacePopupOpen(false);
     setSelectedCard(null);
-    setIsConfirmPopupOpen(null);
+    /* setIsConfirmPopupOpen(null); */
   }
 
   return (
@@ -187,11 +179,11 @@ function App() {
       />
       {/* Заготовка реализации функций удаления карточек */}
       {/*Что-то я тут наворотил (по аналогии...)*/}
-      <ConfirmPopup
+      {/* <ConfirmPopup
         isOpen={isConfirmPopupOpen}
         onClose={closeAllPopups}
         onConfirm={handleConfirmDelete}
-      />
+      /> */}
     </CurrentUserContext.Provider>
   );
 }
