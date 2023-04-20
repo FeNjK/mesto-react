@@ -8,14 +8,12 @@ import CurrentUserContext from "../contexts/CurrentUserContext.js";
 import EditProfilePopup from "./EditProfilePopup.js";
 import EditAvatarPopup from "./EditAvatarPopup.js";
 import AddPlacePopup from "./AddPlacePopup.js";
-//import ConfirmPopup from "./ConfirmPopup.js";
 
 function App() {
   const [currentUser, setCurrentUser] = useState({ name: "", about: "" });
   const [isEditProfilePopupOpen, setIsEditProfilePopupOpen] = useState(false);
   const [isAddPlacePopupOpen, setIsAddPlacePopupOpen] = useState(false);
   const [isEditAvatarPopupOpen, setIsEditAvatarPopupOpen] = useState(false);
-  //const [isConfirmPopupOpen, setIsConfirmPopupOpen] = useState(null);
   const [selectedCard, setSelectedCard] = useState(null);
   const [cards, setCards] = useState([]);
 
@@ -136,16 +134,11 @@ function App() {
     setSelectedCard(card);
   }
 
-  /* function handleCardDelete(card) {
-    setIsConfirmPopupOpen(card);
-  } */
-
   function closeAllPopups() {
     setIsEditAvatarPopupOpen(false);
     setIsEditProfilePopupOpen(false);
     setIsAddPlacePopupOpen(false);
     setSelectedCard(null);
-    /* setIsConfirmPopupOpen(null); */
   }
 
   return (
@@ -177,13 +170,6 @@ function App() {
         onClose={closeAllPopups}
         onAddPlace={handleAddPlace}
       />
-      {/* Заготовка реализации функций удаления карточек */}
-      {/*Что-то я тут наворотил (по аналогии...)*/}
-      {/* <ConfirmPopup
-        isOpen={isConfirmPopupOpen}
-        onClose={closeAllPopups}
-        onConfirm={handleConfirmDelete}
-      /> */}
     </CurrentUserContext.Provider>
   );
 }
